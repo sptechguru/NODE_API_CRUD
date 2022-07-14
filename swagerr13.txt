@@ -1,0 +1,34 @@
+/**
+@swagger
+* /student:
+*  get:
+*    summary: Get all Students Details
+*    description: Get all the tasks
+*    responses:
+*      '200':
+*        content:
+*          application-json:
+*           schema:
+*              type: Array
+*              properties:
+*               _id:
+*                  type: string
+*                  description: Get all Students
+*                  examples: 62bd4744b528cc6ffdbb9747
+*                name:
+*                  type: string
+*                  description: Get all Students
+*                  examples: raj
+*                email_Id:
+*                  type: string
+*                  description: Get all Students
+*                  examples: raj1234@gmail.com
+*                phone_Number:
+*                  type: Number
+*                  description: Get Students phone_Number
+*                  examples: '7412589632'
+*                address:
+*                  type: string
+*                  description: Get Students address
+*                  examples: demo test 34 555
+*/
