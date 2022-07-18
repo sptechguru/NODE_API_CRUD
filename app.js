@@ -26,8 +26,11 @@ app.use(RegisterRouter, studentRouter ,customer);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {customCss}));
 
+// app.use(cors());
+
+
 app.use(cors({
-  origin: process.env.PORT || 3000,
+  origin: '*',
   methods: ['GET','POST'],
   credentials: true
 }))
