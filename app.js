@@ -12,6 +12,19 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 const customCss = fs.readFileSync((process.cwd()+"/swagger.css"), 'utf8');
 const cors = require('cors');
+app.use(cors());
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Methods", "*");
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, access_token");
+    if ('OPTIONS' == req.method) {
+        // res.send(200);
+        res.sendStatus(200);
+    }
+    else {
+        next();
+    }
+});
 const bodyParser = require('body-parser');
 const customer = require("./src/routes/customer_view");
 
@@ -25,23 +38,6 @@ app.use(bodyParser.json());
 app.use(RegisterRouter, studentRouter ,customer);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {customCss}));
-
-// app.use(cors());
-
-const corsOpts = {
-  origin: '*',
-
-  methods: [
-    'GET',
-    'POST',
-  ],
-
-  allowedHeaders: [
-    'Content-Type',
-  ],
-};
-
-app.use(cors(corsOpts));
 
 
 app.listen(port, () => {
