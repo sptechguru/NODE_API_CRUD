@@ -28,12 +28,20 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {customCs
 
 // app.use(cors());
 
-
-app.use(cors({
+const corsOpts = {
   origin: '*',
-  methods: ['GET','POST'],
-  credentials: true
-}))
+
+  methods: [
+    'GET',
+    'POST',
+  ],
+
+  allowedHeaders: [
+    'Content-Type',
+  ],
+};
+
+app.use(cors(corsOpts));
 
 
 app.listen(port, () => {
