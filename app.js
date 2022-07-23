@@ -6,6 +6,8 @@ require("./src/db/dbLocal_conn");
 fs = require('fs');
 const studentRouter = require("./src/routes/student");
 const RegisterRouter = require("./src/routes/Register");
+const EmployeeRouter = require("./src/routes/employee_view");
+
 const cookieParser = require("cookie-parser");
 const app = express();
 const swaggerUi = require('swagger-ui-express');
@@ -35,7 +37,9 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(bodyParser.json());
 
-app.use(RegisterRouter, studentRouter ,customer);
+// app.use(EmployeeRouter);
+
+app.use(RegisterRouter, studentRouter ,customer,EmployeeRouter);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {customCss}));
 

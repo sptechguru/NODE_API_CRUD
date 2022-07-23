@@ -19,9 +19,10 @@ router.post("/signup", async (req, res) => {
         password: pass,
         confirm_password: cpass,
       });
-      const token = await userRegistion.AuthGenerateToken();
-      console.log("token data", token);
-      console.log(userRegistion);
+      // const token = await userRegistion.AuthGenerateToken();
+      // console.log("token data", token);
+      // console.log(userRegistion);
+
       const savedb = await userRegistion.save();
       console.log("page data ", savedb);
       // now get cookies for token through

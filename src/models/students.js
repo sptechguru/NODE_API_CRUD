@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 
 const StudentSchema = new mongoose.Schema({
+
+
   name: {
     type: String,
     required: true,
@@ -33,6 +35,11 @@ const StudentSchema = new mongoose.Schema({
     required: true,
     minlength: 8,
   },
+
+  profile_pic: { 
+    type: String
+    // required: true 
+  }
 });
 
 ////////// We will create for Collection  data based Schema  for Models.///////////
