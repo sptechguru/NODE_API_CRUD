@@ -14,11 +14,18 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 const customCss = fs.readFileSync((process.cwd()+"/swagger.css"), 'utf8');
 const cors = require('cors');
+const bodyParser = require('body-parser');
+const customer = require("./src/routes/customer_view");
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.json());
+app.use(bodyParser.json());
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Methods", "*");
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, access_token");
+    res.header("Access-Control-Allow-Headers",
+     "Origin, X-Requested-With, Content-Type, Accept, access_token");
     if ('OPTIONS' == req.method) {
         // res.send(200);
         res.sendStatus(200);
@@ -27,17 +34,8 @@ app.use(function (req, res, next) {
         next();
     }
 });
-const bodyParser = require('body-parser');
-const customer = require("./src/routes/customer_view");
-
 
 // console.log("secrekKey",process.env.SECRET_KEY);
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.json());
-app.use(bodyParser.json());
-
-// app.use(EmployeeRouter);
 
 app.use(RegisterRouter, studentRouter ,customer,EmployeeRouter);
 
